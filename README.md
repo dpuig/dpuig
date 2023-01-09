@@ -4,11 +4,11 @@ My name is Daniel Puig, I'm a Site Reliability Engineer. My area of work is orie
 
 <h3>About me:</h3>
 
-- Linux Desktop User \
-- Bash Scripting \
-- Golang \
-- Containers Runtime \
-- Kubernetes \ 
+- Linux Desktop User
+- Bash Scripting
+- Golang
+- Containers Runtime
+- Kubernetes
 - Blogger
 
 <br>
@@ -17,3 +17,4 @@ My name is Daniel Puig, I'm a Site Reliability Engineer. My area of work is orie
 <h3>Find me:</h3>
 
 [![Twitter](https://img.shields.io/badge/Twitter-1D9BF0?logo=twitter&logoColor=fff&style=for-the-badge)](https://twitter.com/dpuiger)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077b5?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/dpuigerarde/) 
