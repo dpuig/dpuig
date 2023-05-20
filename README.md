@@ -1,15 +1,25 @@
 <h2>Hello World</h2>
 
-My name is Daniel Puig, I'm a Site Reliability Engineer. My area of work is oriented to observability, analysis / diagnosis of incidents, development of functionalities for the Cloud Native platform.
+I'm a seasoned Site Reliability Engineer and Go Developer with a robust background in ensuring the high availability and performance of large-scale systems. My passion lies in constructing reliable, efficient, and scalable infrastructure. Leveraging Kubernetes for orchestrating containers and implementing DevOps practices, I streamline development processes and improve system resilience.
 
-<h3>About me:</h3>
+In my journey to break down the barriers between development and operations, I've become proficient in various tools and technologies, and I've used them to design, build, and maintain comprehensive deployment pipelines. My professional commitment revolves around the seamless operation of software systems and fostering a culture of continuous improvement.
 
-- Linux Desktop User
-- Bash Scripting
-- Golang
-- Containers Runtime
+<h3>Toolbox:</h3>
+
+- Go(Golang)
+- Containers
 - Kubernetes
-- Blogger
+- CI/CD
+- Configuration Management Tools (Ansible)
+- Infrastructure as Code (IaC) Tools
+- Cloud Providers
+- Monitoring Tools
+- Log Management Tools
+- Incident Management Tools
+- Networking
+- Linux/Unix Systems
+- Scripting Languages (Bash, Python)
+- Security Tools
 
 <br>
 </div>
