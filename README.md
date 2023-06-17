@@ -21,6 +21,8 @@ In my journey to break down the barriers between development and operations, I'v
 - Scripting Languages (Bash, Python)
 - Security Tools
 
+![LFS258: Kubernetes Fundamentals](https://www.credly.com/badges/84e1dbb0-13a1-47e4-8933-4fba098e76a0/public_url)
+
 <br>
 </div>
 
