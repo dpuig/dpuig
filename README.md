@@ -6,22 +6,13 @@ In my journey to break down the barriers between development and operations, I'v
 
 <h3>Toolbox:</h3>
 
-- Go(Golang)
+- Automation
+- Go (Golang)
+- Distributed Systems Monitoring
 - Containers
 - Kubernetes
 - CI/CD
-- Configuration Management Tools (Ansible)
-- Infrastructure as Code (IaC) Tools
-- Cloud Providers
-- Monitoring Tools
-- Log Management Tools
-- Incident Management Tools
-- Networking
-- Linux/Unix Systems
-- Scripting Languages (Bash, Python)
-- Security Tools
-
-![LFS258: Kubernetes Fundamentals](https://github.com/dpuig/dpuig/blob/main/lfs258-kubernetes-fundamentals.png)
+- Solution Architecture
 
 <br>
 </div>
