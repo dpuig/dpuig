@@ -1,11 +1,13 @@
-We have successfully decommissioned a significant number of our POD services and workflows, with the objective of streamlining operations and reducing redundancy. This also has resulted in less maintenance and thus increased overall efficiency.
+The past year has seen us work diligently on maintaining the security and reliability of our 2Data platform. I am proud to report that we have successfully maintained an IRIS rating of A/B. This reflects our ongoing commitment to risk identification and mitigation, ensuring the stable functioning of our platform at all times.
 
-Through the investment in test automation, we've achieved a high rate of automation, up to 90%. This includes tests for new features, regression tests, and Canary tests. This has greatly reduced the manual effort in testing, ensuring fast and reliable software releases.
+Security standards were a critical focus area for us this year. I am pleased to report a 100% compliance with the established security standards, further solidifying the trust our clients place in our services. Additionally, our platform has shown exceptional reliability, demonstrating a 100% compliance with zero downtime standards.
 
-Our build automation initiatives have reached 50% completion using tools such as GitHub Actions and Terraform. This has further enhanced our CI/CD pipelines, reducing the time and human error involved in the building and deployment process.
+In terms of platform observability, we have achieved 90% visibility across all Points of Access Services. This has proven instrumental in detecting and resolving potential issues proactively, thereby enhancing the overall health and performance of our platform.
 
-In an effort to reduce time to action on problems and incidents, we have introduced more responsive monitoring systems and improved our incident response procedures. As a result, we are quicker to identify and rectify issues, thereby enhancing overall system reliability and uptime.
+We've also achieved 100% key metrics coverage for customers and colleagues. This accomplishment serves as an affirmation of our commitment to deliver excellent service while also ensuring a positive experience for our colleagues working on the platform.
 
-Finally, we've reached a 100% reuse rate of our CF&S platforms, significantly reducing the resources and time consumed in reinventing or redeveloping similar features or modules. By reusing these platforms, we have improved our process efficiency and reduced development timelines.
+Our resolve to test the durability of our platform has led to a remarkable 50% increase in Chaos Testing this year. This practice has greatly bolstered our confidence in the platform's resilience and its ability to handle unforeseen disruptions.
 
-Overall, the above goals have been central in driving efficiency, reducing operational costs, and accelerating delivery time in our role as an SRE at 2Data.
+Last but not least, we have seen an improvement in our availability numbers with a set goal of 99.99%. This underscores our platform's outstanding performance in serving our customers round-the-clock without any interruptions.
+
+Looking ahead, we aim to sustain this performance and aim for even better benchmarks. We understand the dynamic nature of cybersecurity and resiliency, and we are prepared to continuously evolve and enhance our platform to meet these challenges.
