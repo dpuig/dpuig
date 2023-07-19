@@ -6,7 +6,7 @@ In my journey to break down the barriers between development and operations, I'v
 
 <h3>Toolbox:</h3>
 
-- Automation
+- Automation (Ansible and Terraform)
 - Go (Golang)
 - Distributed Systems Monitoring
 - Containers
