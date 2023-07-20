@@ -1,15 +1,35 @@
-what an intense and rewarding year it's been for me in the capacity of a Site Reliability Engineer with 2Data. Looking back, there's so much I've learned and accomplished, and I'd like to take a moment to reflect on some of the key points.
+# Use Red Hat Universal Base Image 8 (UBI 8) minimal
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 
-To start, the field of SRE, though not entirely new, has seen exponential growth this year. The increasing adoption of microservices and the need for reliable systems have significantly accelerated the demand for SREs. It was both challenging and stimulating to be part of this rapidly evolving field.
+# Set the working directory
+WORKDIR /app
 
-Working with 2Data, a platform that deals with complex data structures and vast volumes of information, I have developed a deep understanding of designing, implementing, and maintaining scalable systems. I learned the true meaning of 'fault tolerance', and how crucial it is for systems like 2Data to stay robust in the face of potential failures.
+# Set environment variables for Java and Gradle
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV PATH="$PATH:$JAVA_HOME/bin"
+ENV GRADLE_VERSION=7.1.1
+ENV GRADLE_HOME=/opt/gradle
+ENV PATH="$PATH:$GRADLE_HOME/bin"
 
-This year, one of my main learnings was the importance of Incident Management. No matter how robust our systems are, incidents will occur. However, it's all about how effectively and quickly we can respond to them. I understood that having a well-defined, structured, and practiced incident response plan could drastically minimize the impact of any incident.
+# Install necessary packages
+RUN microdnf install -y java-11-openjdk-devel python38 python38-devel unzip \
+    && microdnf clean all \
+    && rm -rf /var/cache/yum
 
-In terms of technical skills, this year offered me ample opportunities to sharpen my understanding of infrastructure automation tools and methodologies. The continuous integration/continuous delivery (CI/CD) pipeline is no longer a novelty but a necessity in our SRE world. Through this, I've seen first-hand the profound effect that automating processes can have on efficiency and reliability.
+# Install Gradle
+RUN curl -s "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o gradle.zip \
+    && unzip gradle.zip \
+    && rm gradle.zip \
+    && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/"
 
-Working with a diverse team, I realized the importance of effective communication within the team and with other teams. This was especially crucial during crisis management, where clear, concise communication could mean the difference between a prolonged system outage and a quick recovery.
+# Verify that the installations were successful
+RUN java -version; python3 --version; gradle --version
 
-Finally, the one thing that stood out to me was the importance of building a blameless postmortem culture. It's easy to assign blame when things go wrong. However, the real value lies in treating failures as opportunities to learn and improve. This year, I have seen how blameless postmortems help foster a culture of continuous learning and improvement, driving us towards our goal of maximum system reliability.
+# Copy the local code to the container
+COPY . .
 
-As I move into the next year, I hope to take these learnings forward and continue to enhance my skills and knowledge as an SRE. The journey so far has been nothing short of exciting, and I can't wait to see what the next year brings!
+# Expose port
+EXPOSE 8080
+
+# Command to run the application using Gradle
+CMD ["gradle", "run"]
