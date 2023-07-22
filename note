@@ -1,35 +1,55 @@
-# Use Red Hat Universal Base Image 8 (UBI 8) minimal
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
+#!/bin/bash
 
-# Set the working directory
-WORKDIR /app
+# Function to handle errors and print debug information
+error() {
+  local msg="${1}"
+  local code="${2:-1}"
+  echo "Error: ${msg}"
+  exit "${code}"
+}
 
-# Set environment variables for Java and Gradle
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-ENV PATH="$PATH:$JAVA_HOME/bin"
-ENV GRADLE_VERSION=7.1.1
-ENV GRADLE_HOME=/opt/gradle
-ENV PATH="$PATH:$GRADLE_HOME/bin"
+debug() {
+  local msg="${1}"
+  echo "Debug: ${msg}"
+}
 
-# Install necessary packages
-RUN microdnf install -y java-11-openjdk-devel python38 python38-devel unzip \
-    && microdnf clean all \
-    && rm -rf /var/cache/yum
+# Function to make a GET request
+get_request() {
+  local url="${1}"
+  local headers="${2:-}"
 
-# Install Gradle
-RUN curl -s "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o gradle.zip \
-    && unzip gradle.zip \
-    && rm gradle.zip \
-    && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/"
+  debug "Sending GET request to ${url} with headers: ${headers}"
+  
+  response=$(curl -s -H "${headers}" "${url}")
+  if [ $? -ne 0 ]; then
+    error "Failed to send GET request"
+  fi
 
-# Verify that the installations were successful
-RUN java -version; python3 --version; gradle --version
+  debug "GET request response: ${response}"
 
-# Copy the local code to the container
-COPY . .
+  echo "${response}" | jq
+  if [ $? -ne 0 ]; then
+    error "Failed to parse JSON response"
+  fi
+}
 
-# Expose port
-EXPOSE 8080
+# Function to make a POST request
+post_request() {
+  local url="${1}"
+  local headers="${2:-}"
+  local payload="${3:-}"
 
-# Command to run the application using Gradle
-CMD ["gradle", "run"]
+  debug "Sending POST request to ${url} with headers: ${headers} and payload: ${payload}"
+
+  response=$(curl -s -X POST -H "${headers}" -d "${payload}" "${url}")
+  if [ $? -ne 0 ]; then
+    error "Failed to send POST request"
+  fi
+
+  debug "POST request response: ${response}"
+
+  echo "${response}" | jq
+  if [ $? -ne 0 ]; then
+    error "Failed to parse JSON response"
+  fi
+}
