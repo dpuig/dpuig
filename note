@@ -1,13 +1,124 @@
-#!/bin/bash
+package io.vertx.circuitbreaker.impl;
 
-NAMESPACE=<namespace>
+import io.vertx.circuitbreaker.*;
+import io.vertx.core.Future;
+import io.vertx.core.Handler;
+import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
 
-# Get list of nodes for a namespace
-NODES=$(oc get pods -n $NAMESPACE -o jsonpath='{range .items[*]}{.spec.nodeName}{"\n"}{end}' | sort | uniq)
+import java.util.function.Function;
 
-# Loop over nodes and print their IPs
-for NODE in $NODES
-do
-    NODE_IP=$(oc get node $NODE -o jsonpath='{.status.addresses[?(@.type=="InternalIP")].address}')
-    echo "Node: $NODE, IP: $NODE_IP"
-done
+public class CircuitBreakerImpl implements CircuitBreaker {
+    private String name;
+    private Vertx vertx;
+    private CircuitBreakerOptions options;
+    private CircuitBreakerState state;
+    private long failureCount;
+    private RetryPolicy retryPolicy;
+
+    private Function<Throwable, ?> defaultFallback;
+    private Handler<Void> openHandler, closeHandler, halfOpenHandler;
+
+    public CircuitBreakerImpl(String name, Vertx vertx, CircuitBreakerOptions options) {
+        this.name = name;
+        this.vertx = vertx;
+        this.options = options;
+        this.state = CircuitBreakerState.CLOSED;
+        this.failureCount = 0;
+    }
+
+    @Override
+    public CircuitBreaker close() {
+        this.state = CircuitBreakerState.CLOSED;
+        if (closeHandler != null) {
+            closeHandler.handle(null);
+        }
+        return this;
+    }
+
+    @Override
+    public CircuitBreaker openHandler(Handler<Void> handler) {
+        this.openHandler = handler;
+        return this;
+    }
+
+    @Override
+    public CircuitBreaker halfOpenHandler(Handler<Void> handler) {
+        this.halfOpenHandler = handler;
+        return this;
+    }
+
+    @Override
+    public CircuitBreaker closeHandler(Handler<Void> handler) {
+        this.closeHandler = handler;
+        return this;
+    }
+
+    @Override
+    public <T> Future<T> executeWithFallback(Handler<Promise<T>> command, Function<Throwable, T> fallback) {
+        // Logic to execute command with fallback
+        return Future.succeededFuture();
+    }
+
+    @Override
+    public <T> Future<T> execute(Handler<Promise<T>> command) {
+        // Logic to execute command with default fallback
+        return Future.succeededFuture();
+    }
+
+    @Override
+    public <T> CircuitBreaker executeAndReport(Promise<T> resultPromise, Handler<Promise<T>> command) {
+        // Logic to execute and report result with default fallback
+        return this;
+    }
+
+    @Override
+    public <T> CircuitBreaker executeAndReportWithFallback(Promise<T> resultPromise, Handler<Promise<T>> command,
+                                                           Function<Throwable, T> fallback) {
+        // Logic to execute and report result with given fallback
+        return this;
+    }
+
+    @Override
+    public <T> CircuitBreaker fallback(Function<Throwable, T> handler) {
+        this.defaultFallback = handler;
+        return this;
+    }
+
+    @Override
+    public CircuitBreaker reset() {
+        this.failureCount = 0;
+        this.state = CircuitBreakerState.CLOSED;
+        return this;
+    }
+
+    @Override
+    public CircuitBreaker open() {
+        this.state = CircuitBreakerState.OPEN;
+        if (openHandler != null) {
+            openHandler.handle(null);
+        }
+        return this;
+    }
+
+    @Override
+    public CircuitBreakerState state() {
+        return this.state;
+    }
+
+    @Override
+    public long failureCount() {
+        return this.failureCount;
+    }
+
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    @Override
+    public CircuitBreaker retryPolicy(RetryPolicy retryPolicy) {
+        this.retryPolicy = retryPolicy;
+        return this;
+    }
+}
