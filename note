@@ -1,25 +1,15 @@
-http_filters:
-- name: envoy.filters.http.lua
-  typed_config:
-    "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
-    inline_code: |
-      function envoy_on_request(request_handle)
-        -- Get the header value
-        local header_value = request_handle:headers():get("your-header-name")
-        
-        -- Check if the header value is "True"
-        if header_value == "True" then
-          -- Increase the custom stats counter
-          request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "custom_counter", 1)
-        end
-      end
-- name: envoy.filters.http.router
+In Envoy Proxy, Counter metrics are generally used to automatically track various operational aspects of the proxy itself, like requests, errors, etc. To manipulate these metrics manually (i.e., increment them or attach labels) you'd typically be moving outside the intended use case of Envoy's metrics system.
 
-stats_sinks:
-- name: envoy.stat_sinks.statsd
-  typed_config:
-    "@type": type.googleapis.com/envoy.config.metrics.v3.StatsdSink
-    address:
-      socket_address:
-        address: 127.0.0.1
-        port_value: 8125
+However, if you're looking to instrument custom behavior in Envoy and capture specific metrics tied to that behavior, you might consider writing a custom Envoy filter. Through this filter, you could increment existing counters based on custom logic or conditions you define.
+
+Here's a high-level approach to achieve this:
+
+Writing a Custom Filter: Write an Envoy HTTP filter in C++ that captures specific requests or conditions you want to track.
+
+Manipulate the Counter: Within this filter, you can get a handle to Envoy's stats API and then manipulate (increment, set, etc.) specific Counter metrics based on the behavior you're observing.
+
+Attach Labels: The concept of labels, as typically understood in monitoring systems like Prometheus, doesn't map one-to-one with Envoy's internal stats. Instead, Envoy uses tags. If you want to "label" a metric in Envoy, you're typically adding or manipulating tags. Your custom filter can also be used to modify or add tags to metrics.
+
+Expose Metrics: Once your custom filter is in place and doing its thing, the manipulated metrics can be exposed through Envoy's /stats endpoint and then scraped by a monitoring system, like Prometheus.
+
+Build & Deploy: After writing your filter, you'd build your custom version of Envoy and deploy it.
