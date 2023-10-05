@@ -4,7 +4,7 @@ Site Reliability Engineer, I specialize in leveraging cutting-edge cloud technol
 
 <h3>Toolbox:</h3>
 
-- Automation
+- Troubleshooting & Automation
 - On Prem to Cloud Migration
 - Software Development & Operations
 - Cloud Architecture
