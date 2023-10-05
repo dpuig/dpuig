@@ -1,18 +1,14 @@
 <h2>Hello World</h2>
 
-I'm a seasoned Site Reliability Engineer and Go Developer with a robust background in ensuring the high availability and performance of large-scale systems. My passion lies in constructing reliable, efficient, and scalable infrastructure. Leveraging Kubernetes for orchestrating containers and implementing DevOps practices, I streamline development processes and improve system resilience.
-
-In my journey to break down the barriers between development and operations, I've become proficient in various tools and technologies, and I've used them to design, build, and maintain comprehensive deployment pipelines. My professional commitment revolves around the seamless operation of software systems and fostering a culture of continuous improvement.
+Site Reliability Engineer, I specialize in leveraging cutting-edge cloud technologies to ensure optimal uptime, reliability, and scalability of large-scale systems. With a proven track record of managing complex infrastructures across multiple cloud platforms, I adeptly employ a mix of software engineering and systems engineering to deliver seamless operations. My expertise encompasses designing and implementing cloud-native solutions, automating deployment processes, and proactively monitoring systems to preempt and mitigate potential issues. Committed to continuous improvement and upskilling, I am passionate about harnessing the transformative power of the cloud to drive operational excellence.
 
 <h3>Toolbox:</h3>
 
-- Automation (Ansible and Terraform)
-- Go (Golang)
-- Distributed Systems Monitoring
-- Containers
-- Kubernetes
-- CI/CD
-- Solution Architecture
+- Automation
+- On Prem to Cloud Migration
+- Software Development & Operations
+- Cloud Architecture
+- Security
 
 <br>
 </div>
