@@ -1,8 +1,5 @@
 <h2>Hello World</h2>
 
-</div>
-
-<h3>Some of my publications</h3>
 
 [![Dev](https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png)](https://dev.to/dpuig)
 
